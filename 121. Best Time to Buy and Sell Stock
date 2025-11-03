@@ -1,0 +1,17 @@
+Leetcode - 121. Best Time to Buy and Sell Stock
+
+Time Complexity - O(n)
+Space Complexity - O(1)
+Solution with inline description - 
+```
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        min_price = prices[0]                           #tracking min_price at every day till date
+        profit = 0                                      #result profit
+        for i in range(1, len(prices)):                 #O(n) a single loop on prices list
+            profit = max(profit, prices[i] - min_price) #maximising profit 
+            if min_price > prices[i]:                   #considering lowest price at each loop and updating it 
+                min_price = prices[i]
+        
+        return profit                                   #returning the maximised profit
+```
