@@ -1,0 +1,18 @@
+300. Longest Increasing Subsequence
+
+Solution - 
+Time Complexity - O(n²)
+Space Complexity - O(n)
+
+```
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        n = len(nums)
+        dp = [1] * n                                #creating a list of size n, initialized with 1
+        for i in range(n):                          
+            for j in range(i):
+                if nums[j] < nums[i]:               #checking if the current jth element is less then what we encounter as ith element, if yes then update our dp list
+                    dp[i] = max(dp[i], dp[j] +1 )   #updating the dp list, considering the current dp element and jth element + 1 (+1 is taking consideration of current ith element)
+        
+        return max(dp)                             #returning max of all elements present in dp list
+```
