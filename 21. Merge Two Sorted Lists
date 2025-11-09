@@ -1,7 +1,7 @@
 21. Merge Two Sorted Lists
 
 Solution - 
-Time Complexity - O(n)
+Time Complexity - O(n+m) where n and m are sizes of the list respectively
 Space Complexity - O(1)
 
 ```
