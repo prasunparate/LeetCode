@@ -1,0 +1,22 @@
+1539. Kth Missing Positive Number
+
+Solution - 
+Time Complexity - O(n)
+Space Complexity - O(n)
+
+```
+class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+        n = max(arr)
+        arr = set(arr)
+        i = 1
+        while True:
+            if i not in arr: #checking if i in our set arr, if yes then decrease 1 from k
+                k -= 1
+            
+                if k == 0:  # if k equals 0 then we have found our soution
+                    return i
+            i += 1
+        
+        return 1
+```
