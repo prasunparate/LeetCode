@@ -1,0 +1,31 @@
+19. Remove Nth Node From End of List
+
+Solution - 
+Time Complexity - O(N)
+Space Complexity - O(1)
+
+```
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        #let's create a slow and fast pointer
+        slow = head
+        fast = head
+        #let's move our fast pointer to the n position ahead.
+        for i in range(n):
+            fast = fast.next
+        #a quick check, if fast is None then return head
+        if not fast:
+            return head.next
+        #now since our fast pointer is n position ahead, so let's move our slow pointer and fast pointer, until fast pointer reaches end, so this will result in slow pointer to nth position from the end.
+        while fast.next:
+            slow = slow.next
+            fast = fast.next
+        #now let's delete the nth node with help of slow pointer
+        slow.next = slow.next.next
+        return head
+```
