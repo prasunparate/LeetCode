@@ -1,0 +1,49 @@
+143. Reorder List
+
+Solution - 
+Time Complexity - O(n)
+Space Complexity - O(1)
+
+```
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        slow = fast = head
+        #finding out the middle of the list
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        #lets break the two lists
+        ptr2 = slow.next
+        slow.next = None
+
+        #so now we have two list starting with head and slow
+        #let's reverse the ptr2 head list
+        prev = None
+        curr = ptr = ptr2
+
+        while curr:
+            curr = curr.next
+            ptr.next = prev
+            prev = ptr
+            ptr = curr
+        
+        #let's reorder the list
+        ptr2 = prev
+        ptr1 = head
+
+        while ptr1 and ptr2:
+            curr = ptr1.next
+            ptr1.next = ptr2
+            ptr1 = ptr2
+            ptr2 = curr
+        
+```
