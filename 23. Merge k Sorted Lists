@@ -1,0 +1,29 @@
+23. Merge k Sorted Lists
+
+Solution - 
+Time Complexity - O(k log n) where k is number of lists present, and n is the number of elements present in k lists
+Space Complexity - O(k * n)
+
+```
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        heap = [] #creating a heap for sorted manner
+        for i in lists:
+            head = i
+            while head: #iterating over each elements present in the lists
+                heapq.heappush(heap, head.val)
+                head = head.next
+        new_head = ListNode(0) #creating a new linked list
+        dummy = new_head
+
+        while len(heap) > 0:
+            new_head.next = ListNode(heapq.heappop(heap)) #popping it from our heap in sorted manner
+            new_head = new_head.next
+        
+        return dummy.next
+```
